@@ -17,11 +17,23 @@ class App extends React.Component {
     console.log(event.target.value);
   };
 
+  handleSubmit = (event, tools) => {
+    console.log(event);
+    event.preventDefault();
+    this.state.todos.push(event.target.todoItem.value);
+    console.log("******");
+    console.log(this.state.todos);
+    event.target.todoItem.value = "";
+  };
+
   render() {
     return (
       <>
         {/* <TodoList /> */}
-        <TodoForm handleChange={this.handleChange} />
+        <TodoForm
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
       </>
     );
   }
