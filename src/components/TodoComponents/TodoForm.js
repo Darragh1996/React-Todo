@@ -6,8 +6,8 @@ export default class TodoForm extends React.Component {
       <form onSubmit={this.props.handleSubmit}>
         <input
           name="todoItem"
-          value={this.props.todo}
-          onChange={this.props.handleChange}
+          value={this.props.todoValue}
+          onChange={event => this.props.handleChange(event)}
         />
         <button>submit</button>
       </form>

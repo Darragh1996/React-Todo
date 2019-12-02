@@ -1,6 +1,6 @@
 import React from "react";
 import TodoForm from "./components/TodoComponents/TodoForm";
-// import TodoList from "./components/TodoComponents/TodoList";
+import TodoList from "./components/TodoComponents/TodoList";
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -9,30 +9,34 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: []
+      todos: [],
+      todoValue: ""
     };
   }
 
   handleChange = event => {
-    console.log(event.target.value);
+    this.setState({
+      todoValue: event.target.value
+    });
   };
 
-  handleSubmit = (event, tools) => {
+  handleSubmit = event => {
     console.log(event);
     event.preventDefault();
-    this.state.todos.push(event.target.todoItem.value);
-    console.log("******");
-    console.log(this.state.todos);
-    event.target.todoItem.value = "";
+    this.setState({
+      todos: [...this.state.todos, event.target.todoItem.value],
+      todoValue: ""
+    });
   };
 
   render() {
     return (
       <>
-        {/* <TodoList /> */}
+        <TodoList todos={this.state.todos} />
         <TodoForm
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
+          todoValue={this.state.todoValue}
         />
       </>
     );
