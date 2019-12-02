@@ -24,15 +24,33 @@ class App extends React.Component {
     console.log(event);
     event.preventDefault();
     this.setState({
-      todos: [...this.state.todos, event.target.todoItem.value],
+      todos: [
+        ...this.state.todos,
+        {
+          task: event.target.todoItem.value,
+          id: Date.now(),
+          completed: false
+        }
+      ],
       todoValue: ""
     });
+    console.log(this.state.todos);
   };
+
+  handleClick = event => {
+    event.stopPropagation();
+    this.setState({
+      completed: !this.state.todos.completed
+    });
+    console.log("clicked", this.state.todos.id);
+  };
+
+  deleteCompleted = event => {};
 
   render() {
     return (
       <>
-        <TodoList todos={this.state.todos} />
+        <TodoList todos={this.state.todos} handleClick={this.handleClick} />
         <TodoForm
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}

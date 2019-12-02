@@ -9,7 +9,8 @@ export default class TodoForm extends React.Component {
           value={this.props.todoValue}
           onChange={event => this.props.handleChange(event)}
         />
-        <button>submit</button>
+        <input type="submit" />
+        <button>clear completed</button>
       </form>
     );
   }

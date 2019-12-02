@@ -7,11 +7,11 @@ export default class TodoList extends React.Component {
   render() {
     // console.log(this.props.todos);
     return (
-      <ul>
+      <div>
         {this.props.todos.map(todo => {
-          return <Todo todo={todo} />;
+          return <Todo todo={todo} handleClick={this.props.handleClick} />;
         })}
-      </ul>
+      </div>
     );
   }
 }
