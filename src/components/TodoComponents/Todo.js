@@ -19,9 +19,8 @@ export default class Todo extends React.Component {
   //   };
 
   render() {
-    console.log(this.props.todo.id);
     return (
-      <h2 onClick={event => this.props.handleClick(event)}>
+      <h2 onClick={event => this.props.handleClick(this.props.todo)}>
         {this.props.todo.completed
           ? this.props.todo.task.strike()
           : this.props.todo.task}

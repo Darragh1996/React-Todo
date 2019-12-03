@@ -37,15 +37,31 @@ class App extends React.Component {
     console.log(this.state.todos);
   };
 
-  handleClick = event => {
-    event.stopPropagation();
+  handleClick = currentTodo => {
+    console.log(currentTodo.id);
+
+    // event.stopPropagation();
     this.setState({
-      completed: !this.state.todos.completed
+      todos: [
+        ...this.state.todos.map(el => {
+          if (el.id == currentTodo.id) {
+            el.completed = !el.completed;
+          }
+          return el;
+        })
+      ]
     });
-    console.log("clicked", this.state.todos.id);
+    console.log("clicked", currentTodo.id);
   };
 
-  deleteCompleted = event => {};
+  deleteCompleted = () => {
+    let filteredItems = this.state.todos.filter(el => {
+      return el.completed == false;
+    });
+    this.setState({
+      todos: filteredItems
+    });
+  };
 
   render() {
     return (
@@ -55,6 +71,7 @@ class App extends React.Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           todoValue={this.state.todoValue}
+          delete={this.deleteCompleted}
         />
       </>
     );
